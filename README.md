@@ -1,3 +1,3 @@
 # CPSC-362-Project
 # Software Engineering Project
-# Names: Philip Sanchez, Joshua Higerada, Owen Keysur
+# Names: Philip Sanchez, Joshua Higerada, Owen Keyser
