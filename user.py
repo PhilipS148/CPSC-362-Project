@@ -1,4 +1,7 @@
 class User:
+    '''This class will deal with account creation as well as user login functions.
+       In addition we will handle rewards through the user class and maintain a log
+       of previous order history'''
     user_list = []
 
     def __init__(self, name, password):
