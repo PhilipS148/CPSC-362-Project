@@ -1,0 +1,1 @@
+'''Function to test the backend of the website'''
