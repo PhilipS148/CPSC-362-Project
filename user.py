@@ -6,10 +6,26 @@ class User:
        of previous order history'''
     user_list = []
 
-    def __init__(self, name, password):
+    def __init__(self, name, password) :
         self.name = name
         self.__password = password
-        self.logedin = False
+    
+    def create_account(self):
+        for user in self.user_list:
+            if self.name == user['name']:
+                print("Username is taken")
+                return False
+            
+        print("Account Created")
+        new_user =  {
+        "name" : self.name,
+        "password" : self.__password
+        }
+        self.user_list.append(new_user)
+        with open('account_management', 'w') as file:
+            json.dump(self.user_list, file)
+            
+        return True
 
     def login(self, name, password) :
         for user in self.user_list:
