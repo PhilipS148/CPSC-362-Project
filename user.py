@@ -39,5 +39,5 @@ class User:
                     print("Password not found try again")
                     return False
         
-        print("Username not found please try agian")
+        print("Username not found please try again")
         return False
