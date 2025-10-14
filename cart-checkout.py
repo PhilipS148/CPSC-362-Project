@@ -1,13 +1,6 @@
 import user
+import food
 '''This class will handle the cart/checkout system and will interact with the user class'''
-class foodItem:
-    def __init__(self, name, price, quantity = 1):
-        self.name = name
-        self.price = price
-        self.quantity = quantity
-
-    def sumPrice(self):
-        return self.price * self.quantity
 
 class Cart:
     def __init__(self, customer ):
