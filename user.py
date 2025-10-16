@@ -9,6 +9,7 @@ class User:
     def __init__(self, name, password) :
         self.name = name
         self.__password = password
+        self.logedin = False
     
     def create_account(self):
         for user in self.user_list:
@@ -18,8 +19,8 @@ class User:
             
         print("Account Created")
         new_user =  {
-        "name" : self.name,
-        "password" : self.__password
+            "name" : self.name,
+            "password" : self.__password
         }
         self.user_list.append(new_user)
         with open('account_management', 'w') as file:
@@ -41,3 +42,9 @@ class User:
         
         print("Username not found please try again")
         return False
+
+    def logout(self) :
+        self.logedin = False
+        return "Logout Successful"
+
+    
