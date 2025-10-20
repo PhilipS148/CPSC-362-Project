@@ -11,6 +11,7 @@
                 padding: 0;
             }
             header {
+                height: 60px;
                 background-color: #e53935; 
                 color: white;
                 padding: 20px 0;
@@ -24,8 +25,9 @@
                 width: auto;
                 object-fit: cover;
             }
-            .header-container {
-                display: flex;
+            .header-grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr;
                 align-items: center;
             }
         </style>
@@ -33,11 +35,11 @@
 
     <body>
         <header>
-            <div class="header-container">
-                <h1>Tuffy Tacos</h1>
+            <div class="header-grid">
                 <a href="index.html">
-                    <img src="./assets/images/tuffytaco.png" alt="TuffyTacos" style="float: left; vertical-align: top;">
+                    <img src="./assets/images/tuffytaco.png" alt="TuffyTacos" style="float: left;">
                 </a>
+                <h1>Tuffy Tacos</h1>
             </div>
         </header>
     </body>
