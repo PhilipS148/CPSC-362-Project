@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Tuffy Tacos</title>
+        <link rel="icon" type="image/png" href="./assets/images/tuffytaco.png"/>
+        <style>
+            body {
+                background-color: #fff8e1;
+                color: #333;
+                text-align: center; 
+                margin: 0;
+                padding: 0;
+            }
+            header {
+                height: 60px;
+                background-color: #F46524; 
+                color: white;
+                padding: 20px 0;
+            }
+            h1 {
+                font-size: 3em;
+                margin: 0;
+            }
+            .header-grid {
+                display: grid;
+                grid-template-columns: 100px 1fr 200px;
+                align-items: center;
+            }
+            .header-links {
+                a:link, a:visited {
+                    color:white;
+                    background-color: rgb(55, 58, 240);
+                    padding: 15px 25px;
+                    text-align: center;
+                    text-decoration: none;
+                    display: inline-block;
+                }
+                
+                a:hover, a:active {
+                    color: white;
+                    background-color: rgb(55, 58, 240);
+                }
+            }
+        </style>
+    </head>
+
+    <body>
+        <header>
+            <div class="header-grid">
+                <a href="index.html">
+                    <img src="../assets/images/tuffytaco.png" height="60" width="60" alt="TuffyTacos" style="float: left; padding-left: 20px;">
+                </a>
+                <h1>Please Login...</h1>
+                <div class="header-links">
+                    <a href="../IndexFolder/index.html" style="padding-left: 20px;">Return to Homepage</a>
+                </div>
+
+                <div class="login-container">
+                    <div class="login-box">
+                        <h2>Login</h2>
+                        <form>
+                            <input type="text" placeholder="Username" required><br>
+                            <input type="password" placeholder="Password" required><br>
+                            <input type="submit" value="Login">
+                        </form>
+                        <a href="#">Forgot Password?</a>
+                    </div>
+                </div>
+
+            </div>
+        </header>
+    </body>
