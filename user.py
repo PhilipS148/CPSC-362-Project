@@ -23,7 +23,7 @@ class User:
             "password" : self.__password
         }
         self.user_list.append(new_user)
-        with open('account_management', 'w') as file:
+        with open('account_management.json', 'w') as file:
             json.dump(self.user_list, file)
             
         return True
