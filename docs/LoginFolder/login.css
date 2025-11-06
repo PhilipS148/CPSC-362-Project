@@ -1,0 +1,93 @@
+body {
+    background-color: #2c2c2a;
+    color: #333;
+    margin: 0;
+    font-family: sans-serif;
+}
+
+
+header {
+    height: 75px;
+    background-color: #F46524;
+    color: white;
+    padding: 20px 0;
+}
+
+.header-grid {
+    display: grid;
+    grid-template-columns: 100px 1fr 200px;
+    align-items: center;
+    text-align: center;
+}
+
+.header-links a {
+    color: white;
+    background-color: #6870b3;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.header-links a:hover {
+    background-color: #2b35c7;
+}
+
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 115px); 
+}
+
+.login-box {
+    background-color: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    width: 300px;
+    text-align: center;
+}
+
+.login-box h2 {
+    margin-bottom: 20px;
+    color: #F46524;
+}
+
+
+.login-box input[type="text"],
+.login-box input[type="password"] {
+    width: 90%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+
+.login-box input[type="submit"] {
+    width: 100%;
+    background-color: #F46524;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.login-box input[type="submit"]:hover {
+    background-color: #d9541b;
+}
+
+
+.forgot-password {
+    display: block;
+    margin-top: 10px;
+    font-size: 0.9em;
+    color: #3144f0;
+    text-decoration: none;
+}
+
+.forgot-password:hover {
+    text-decoration: underline;
+}

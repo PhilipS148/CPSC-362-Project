@@ -24,22 +24,32 @@ h1 {
 
 .header-grid {
     display: grid;
-    grid-template-columns: 80px 1fr 100px;
+    grid-template-columns: 80px 1fr 200px;
     align-items: center;
 }
+
+.header-links {
+    display: flex;               /* Make the links line up horizontally */
+    justify-content: center;     /* Center them horizontally (optional) */
+    align-items: center;         /* Align them vertically (optional) */
+    gap: 15px;                   /* Add space between the two links */
+}
+
 
 .header-links a:link,
 .header-links a:visited {
     color: white;
-    background-color: #3144f0;
+    background-color: #6870b3;
     padding: 20px 30px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
+    border-radius: 5px;
+    
 }
 
 .header-links a:hover,
 .header-links a:active {
     color: white;
-    background-color: rgb(55, 58, 240);
+    background-color: #2b35c7;
 }
