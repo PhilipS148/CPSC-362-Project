@@ -1,3 +1,10 @@
+body {
+    background-color: #2c2c2a;
+    color: #333;
+    margin: 0;
+    font-family: sans-serif;
+}
+
 header {
     height: 75px;
     background-color: #F46524;
