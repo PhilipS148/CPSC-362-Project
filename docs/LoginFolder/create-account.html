@@ -25,13 +25,57 @@
             <div class="create-account-container">
                 <div class="create-account-box">
                     <h2>Create Account</h2>
-                    <form>
-                        <input type="text" placeholder="Username" required><br>
-                        <input type="password" placeholder="Password" required><br>
+                    <form id = "createAccountForm">
+                        <input type="text" id = "username" placeholder="Username" required><br>
+                        <input type="password" id = "password" placeholder= "Password" required><br>
                         <input type="submit" value="Create Account">
                     </form>
+                    <div id = "message" class = "message"></div>
                 </div>
             </div>
         </main>
+
+        <script>
+            const API_URL = 'http://127.0.0.1:5000';
+
+            document.getElementById('createAccountForm').addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                const username = document.getElementById('username').value;
+                const password = document.getElementById('password').value;
+                const messageDiv = document.getElementById('message');
+                
+                try {
+                    const response = await fetch(`${API_URL}/api/create-account`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ username, password })
+                    });
+                    
+                    const data = await response.json();
+                    
+                    messageDiv.style.display = 'block';
+                    
+                    if (data.success) {
+                        messageDiv.className = 'message success';
+                        messageDiv.textContent = data.message;
+                        
+                        setTimeout(() => {
+                            window.location.href = './login.html';
+                        }, 2000);
+                    } else {
+                        messageDiv.className = 'message error';
+                        messageDiv.textContent = data.message;
+                    }
+                } catch (error) {
+                    messageDiv.style.display = 'block';
+                    messageDiv.className = 'message error';
+                    messageDiv.textContent = 'Error connecting to server. Make sure the backend is running.';
+                    console.error('Error:', error);
+                }
+            });
+        </script>
     </body>
 </html>
