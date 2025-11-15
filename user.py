@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, session
+from flask import Flask, request, jsonify, session, render_template, redirect, url_for
 from flask_cors import CORS
 import json
 import os
@@ -58,6 +58,21 @@ class User:
 
 temp_user = User()
 
+@app.route('/login')
+def login_page():
+    return render_template('login.html')
+
+@app.route('/create-account')
+def create_account_page():
+    return render_template('create-account.html')
+
+@app.route('/')
+def index():
+    logged_in = session.get('logged_in', False)
+    username = session.get('username')
+    return render_template("index.html", logged_in=logged_in, username=username)
+
+
 @app.route('/api/create-account', methods = ['POST'])
 def create_account() :
     data = request.get_json()
@@ -76,7 +91,7 @@ def create_account() :
 
 
 @app.route('/api/login', methods = ['POST'])
-def login() :
+def login():
     data = request.get_json()
     username = data.get('username')
     password = data.get('password')
@@ -94,11 +109,11 @@ def login() :
     else :
         return jsonify(result), 401
 
-@app.route('/api/logout', methods=['POST'])
-def logout():
-    '''Handle logout requests'''
+@app.route('/api/logout', methods=['GET'])
+def api_logout():
     session.clear()
-    return jsonify({"success": True}), 200
+    jsonify({"success": True}), 200
+    return render_template("index.html")
 
 @app.route('/api/check-session', methods=['GET'])
 def check_session():

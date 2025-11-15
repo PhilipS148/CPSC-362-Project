@@ -4,19 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tuffy Tacos - Login</title>
-    <link rel="icon" type="image/png" href="../assets/images/tuffytaco.png"/>
-    <link rel="stylesheet" href="login.css">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/tuffytaco.png') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSSFiles/login.css') }}">
 </head>
 
 <body>
     <header>
         <div class="header-grid">
-            <a href="../IndexFolder/index.html">
-                <img src="../assets/images/tuffytaco.png" height="60" width="60" alt="TuffyTacos">
+            <a href="{{ url_for('index') }}">
+                <img src="{{ url_for('static', filename='images/tuffytaco.png') }}" height="60" width="60" alt="TuffyTacos">
             </a>
             <h1>Please Login...</h1>
             <div class="header-links">
-                <a href="../IndexFolder/index.html">Return to Homepage</a>
+                <a href="{{ url_for('index') }}">Return to Homepage</a>
             </div>
         </div>
     </header>
@@ -32,56 +32,36 @@
                 </form>
                 <div id="message" class="message"></div>
                 <a href="#" class="forgot-password">Forgot Password?</a>
-                <a href="./create-account.html" class="create-account">Create Account?</a>
+                <a href="{{ url_for('create_account_page') }}" class="create-account">Create Account?</a>
             </div>
         </div>
     </main>
 
     <script>
-        const API_URL = 'http://127.0.0.1:5000';
-
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('Page loaded, setting up form listener...');
-            
             const form = document.getElementById('loginForm');
-            if (!form) {
-                console.error('Login form not found!');
-                return;
-            }
-            
+            const messageDiv = document.getElementById('message');
+
             form.addEventListener('submit', async (e) => {
                 e.preventDefault();
-                console.log('Form submitted!');
-                
                 const username = document.getElementById('username').value;
                 const password = document.getElementById('password').value;
-                const messageDiv = document.getElementById('message');
-                
-                console.log('Attempting login with:', username);
-                
+
                 try {
-                    const response = await fetch(`${API_URL}/api/login`, {
+                    const response = await fetch("/api/login", {
                         method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
+                        headers: { 'Content-Type': 'application/json' },
                         credentials: 'include',
                         body: JSON.stringify({ username, password })
                     });
-                    
-                    console.log('Response status:', response.status);
+
                     const data = await response.json();
-                    console.log('Response data:', data);
-                    
                     messageDiv.style.display = 'block';
-                    
+
                     if (data.success) {
                         messageDiv.className = 'message success';
                         messageDiv.textContent = 'Login successful! Redirecting...';
-                        
-                        setTimeout(() => {
-                            window.location.href = '../IndexFolder/index.html';
-                        }, 1000);
+                        setTimeout(() => { window.location.href = "{{ url_for('index') }}"; }, 1000);
                     } else {
                         messageDiv.className = 'message error';
                         messageDiv.textContent = 'Invalid username or password';
@@ -89,8 +69,8 @@
                 } catch (error) {
                     messageDiv.style.display = 'block';
                     messageDiv.className = 'message error';
-                    messageDiv.textContent = 'Error connecting to server. Make sure the backend is running on port 5000.';
-                    console.error('Error:', error);
+                    messageDiv.textContent = 'Error connecting to server. Make sure the backend is running.';
+                    console.error(error);
                 }
             });
         });

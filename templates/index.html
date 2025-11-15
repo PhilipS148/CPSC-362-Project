@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tuffy Tacos</title>
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/tuffytaco.png') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSSFiles/index.css') }}">
+
+</head>
+<body>
+    <header>
+    <div class="header-grid">
+        <a href="{{ url_for('index') }}">
+            <img id="tuffy" src="{{ url_for('static', filename='images/tuffytaco.png') }}" height="80" width="80" alt="TuffyTacos">
+        </a>
+        <h1>Tuffy Tacos</h1>
+
+        <div class="header-links">
+            <a href="{{ url_for('index') }}">View Menu</a>
+            {% if not logged_in %}
+                <a href="{{ url_for('login_page') }}">Login</a>
+            {% else %}
+                <a href="{{ url_for('api_logout') }}">Logout</a>
+            {% endif %}
+        </div>
+    </div>
+</header>
+
+{% if logged_in %}
+    <div class="welcome-message">
+        <p>Welcome, {{ username }}!</p>
+    </div>
+{% endif %}
+</body>
+</html>

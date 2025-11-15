@@ -1,0 +1,77 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tuffy Tacos - Create Account</title>
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/tuffytaco.png') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSSFiles/create-account.css') }}">
+</head>
+
+<body>
+    <header>
+        <div class="header-grid">
+            <a href="{{ url_for('index') }}">
+                <img src="{{ url_for('static', filename='images/tuffytaco.png') }}" height="60" width="60" alt="TuffyTacos">
+            </a>
+            <h1>Please Create Account</h1>
+            <div class="header-links">
+                <a href="{{ url_for('login_page') }}">Return to Login Page</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="create-account-container">
+            <div class="create-account-box">
+                <h2>Create Account</h2>
+                <form id="createAccountForm">
+                    <input type="text" id="username" placeholder="Username" required><br>
+                    <input type="password" id="password" placeholder="Password" required><br>
+                    <input type="submit" value="Create Account">
+                </form>
+                <div id="message" class="message"></div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        document.getElementById('createAccountForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const messageDiv = document.getElementById('message');
+            
+            try {
+                const response = await fetch("/api/create-account", {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    credentials: 'include',
+                    body: JSON.stringify({ username, password })
+                });
+                
+                const data = await response.json();
+                messageDiv.style.display = 'block';
+                
+                if (data.success) {
+                    messageDiv.className = 'message success';
+                    messageDiv.textContent = 'Account created successfully! Redirecting to login...';
+                    
+                    setTimeout(() => {
+                        window.location.href = "{{ url_for('login_page') }}";
+                    }, 2000);
+                } else {
+                    messageDiv.className = 'message error';
+                    messageDiv.textContent = 'Username already exists.';
+                }
+            } catch (error) {
+                messageDiv.style.display = 'block';
+                messageDiv.className = 'message error';
+                messageDiv.textContent = 'Error connecting to server. Make sure the backend is running.';
+                console.error('Error:', error);
+            }
+        });
+    </script>
+</body>
+</html>

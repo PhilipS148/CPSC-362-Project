@@ -35,6 +35,15 @@ h1 {
     gap: 15px;                   /* Add space between the two links */
 }
 
+.welcome-message {
+    text-align: center;        
+    font-size: 1.5em;         
+    color: #F46524;             
+    margin: 20px 0;            
+    font-weight: bold;           
+    padding-right: 30px;
+}
+
 
 .header-links a:link,
 .header-links a:visited {
