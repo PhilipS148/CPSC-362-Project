@@ -30,7 +30,7 @@ class User:
         return []
 
     def save_user(self) :
-        with open('account_management.json', 'w') as file:
+        with open('account_management.json', 'a') as file:
             json.dump(self.user_list, file, indent=2)
     
     def create_account(self, name, password):
