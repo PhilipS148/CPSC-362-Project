@@ -23,7 +23,7 @@
     </header>
 
     <main>
-        <div id="table-container"></div>
+        <div id="menu-container"></div>
     </main>
 
     <script type="module">
@@ -31,15 +31,15 @@
             let grid = '<div class="menu-grid">';
 
             jsonData["menu_list"].forEach(row => {
-                table += '<div class="item-box">';
-                table += `<h2>${row["name"]}</h2>`;
-                table += `<p>"Price: $"${row["price"]}`
-                table += '</div>';
+                grid += '<div class="item-box">';
+                grid += `<h2>${row["name"]}</h2>`;
+                grid += `<p>"Price: $"${row["price"]}`
+                grid += '</div>';
             });
 
-            table += '</div>';
+            grid += '</div>';
 
-            document.getElementById('table-container').innerHTML = table;
+            document.getElementById('menu-container').innerHTML = grid;
         }
 
         import menuList from '../menuLists.json' with { type: 'json'};
