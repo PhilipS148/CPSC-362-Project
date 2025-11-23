@@ -34,3 +34,21 @@ h1 {
     align-items: center;
     gap: 15px;
 }
+
+.header-links a:link,
+.header-links a:visited {
+    color: white;
+    background-color: #6870b3;
+    padding: 20px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 5px;
+    
+}
+
+.header-links a:hover,
+.header-links a:active {
+    color: white;
+    background-color: #2b35c7;
+}
