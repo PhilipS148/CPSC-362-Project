@@ -73,3 +73,15 @@ h1 {
     margin-bottom: 20px;
     color: #F46524;
 }
+
+.item-box button {
+    background-color: #F46524;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.item-box button:hover {
+    background-color: #d9541b;
+}
