@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <title>Tuffy Tacos</title>
     <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/tuffytaco.png') }}">
@@ -45,7 +45,7 @@
             document.getElementById('table-container').innerHTML = table;
         }
 
-        import jsonData from '../.vscode/menuLists.json' assert { type: 'json'};
-        convertJSONToTable(jsonData);
+        import menuList from '../.vscode/menuLists.json' with { type: 'json'};
+        convertJSONToTable(menul);
     </script>
 </body>
