@@ -34,7 +34,7 @@
             headers.forEach(header => table += '<th>${header}</th>');
             table += '</tr></thread><tbody>';
 
-            jsonData.forEach(row => {
+            jsonData["menu_list"].forEach(row => {
                 table += '<tr>';
                 headers.forEach(header => table += '<td>${row[header]}</td>');
                 table += '</tr>';
