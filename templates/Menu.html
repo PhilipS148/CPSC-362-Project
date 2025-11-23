@@ -27,25 +27,22 @@
     </main>
 
     <script type="module">
-        function convertJSONToTable(jsonData) {
-            let headers = Object.keys(jsonData["menu_list"][0]);
-            let table = '<table><thread><tr>';
-            
-            headers.forEach(header => table += `<th>${header}</th>`);
-            table += '</tr></thread><tbody>';
+        function displayMenuJSON(jsonData) {
+            let grid = '<div class="menu-grid">';
 
             jsonData["menu_list"].forEach(row => {
-                table += '<tr>';
-                headers.forEach(header => table += `<td>${row[header]}</td>`);
-                table += '</tr>';
+                table += '<div class="item-box">';
+                table += `<h2>${row["name"]}</h2>`;
+                table += `<p>"Price: $"${row["price"]}`
+                table += '</div>';
             });
 
-            table += '</tbody></table>';
+            table += '</div>';
 
             document.getElementById('table-container').innerHTML = table;
         }
 
         import menuList from '../menuLists.json' with { type: 'json'};
-        convertJSONToTable(menuList);
+        displayMenuJSON(menuList);
     </script>
 </body>

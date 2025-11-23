@@ -52,3 +52,24 @@ h1 {
     color: white;
     background-color: #2b35c7;
 }
+
+.menu-grid {
+    display: grid;
+    grid-template-columns: 100px 100px 100px 100px;
+    align-items: center;
+    padding: 20px;
+}
+
+.item-box {
+    background-color: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    width: 100px;
+    text-align: center;
+}
+
+.item-box h2 {
+    margin-bottom: 20px;
+    color: #F46524;
+}
