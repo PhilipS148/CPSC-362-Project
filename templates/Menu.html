@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tuffy Tacos</title>
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/tuffytaco.png') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSSFiles/Menu.css') }}">
+
+</head>
+
+<body>
+    <header>
+    <div class="header-grid">
+        <a href="{{ url_for('index') }}">
+            <img id="tuffy" src="{{ url_for('static', filename='images/tuffytaco.png') }}" height="80" width="80" alt="TuffyTacos">
+        </a>
+        <h1>Tuffy Tacos - Menu</h1>
+
+        <div class="header-links">
+            <a href="{{ url_for('index') }}">Return to homepage</a>
+            <a href="{{ url_for('cart') }}">Veiw Cart</a>
+        </div>
+    </div>
+    </header>
+
+    <main>
+        <div id="table-container"></div>
+    </main>
+
+    <script type="module">
+        function convertJSONToTable(jsonData) {
+            let headers = Object.keys(jsonData[1][0]);
+            let table = '<table><thread><tr>';
+            
+            headers.forEach(header => table += '<th>${header}</th>')
+
+            jsonData.forEach(row => {
+                table += '<tr>';
+                headers.forEach(header => table += '<td>${row[header]}</td>');
+                table += '</tr>';
+            })
+
+            table += '</tbody></table>';
+
+            document.getElementByld('table-container').innerHTML = table;
+        }
+
+        import jsonData from '../.vscode/menuLists.json' assert { type: 'json'};
+        convertJSONToTable(jsonData);
+    </script>
+</body>
