@@ -29,10 +29,10 @@
     <script type="module">
         function convertJSONToTable(jsonData) {
             try {
-                let headers = Object.keys(jsonData[0]);
+                let headers = Object.keys(jsonData["menu_list"][0]);
             }
             catch (TypeError) {
-                console.error(jsonData[0]);
+                console.error(jsonData["menu_list"][0]);
             }
             let table = '<table><thread><tr>';
             
