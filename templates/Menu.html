@@ -17,7 +17,7 @@
 
         <div class="header-links">
             <a href="{{ url_for('index') }}">Return to homepage</a>
-            <a href="{{ url_for('cart') }}">Veiw Cart</a>
+            <a href="{{ url_for('cart') }}">View Cart</a>
         </div>
     </div>
     </header>
@@ -41,7 +41,7 @@
 
             table += '</tbody></table>';
 
-            document.getElementByld('table-container').innerHTML = table;
+            document.getElementById('table-container').innerHTML = table;
         }
 
         import jsonData from '../.vscode/menuLists.json' assert { type: 'json'};
