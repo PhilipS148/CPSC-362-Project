@@ -33,7 +33,8 @@
             jsonData["menu_list"].forEach(row => {
                 grid += '<div class="item-box">';
                 grid += `<h2>${row["name"]}</h2>`;
-                grid += `<p>"Price: $"${row["price"]}`
+                grid += `<p>Price: $${row["price"]}</p>`;
+                grid += `<button name="cart_add" type="submit" value="${row["idNum"]}">Add to Cart</button>`;
                 grid += '</div>';
             });
 
