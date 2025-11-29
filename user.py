@@ -141,5 +141,18 @@ def check_session():
     else:
         return jsonify({"logged_in": False}), 200
 
+@app.route('/menu')
+def menu_page() :
+    logged_in = session.get('logged_in', False)
+    username = session.get('username', '')
+    return render_template('menu.html', logged_in=logged_in, username=username)
+
+@app.route('/cart')
+def cart():
+    logged_in = session.get('logged_in', False)
+    username = session.get('username', '')
+    return render_template('cart.html', logged_in=logged_in, username=username)
+    
+
 if __name__ == '__main__':
     app.run(debug=True, port=5000)

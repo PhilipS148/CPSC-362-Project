@@ -43,7 +43,18 @@
             document.getElementById('menu-container').innerHTML = grid;
         }
 
-        import menuList from '../menuLists.json' with { type: 'json'};
-        displayMenuJSON(menuList);
+        fetch("{{ url_for('static', filename='menuLists.json') }}")
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Menu file not found');
+                }
+                return response.json();
+            })
+            .then(menuList => displayMenuJSON(menuList))
+            .catch(error => {
+                console.error('Error loading menu:', error);
+                document.getElementById('menu-container').innerHTML = 
+                    '<p style="color: red; text-align: center;">Error loading menu. Check console for details.</p>';
+            });
     </script>
 </body>
