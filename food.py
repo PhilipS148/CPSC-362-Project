@@ -1,9 +1,10 @@
 '''This class will keep track of all the food on the menu as well as assigne an id number to each menu item'''
-class food:
-    def __init__(self, name, price, idNum):
+class Food:
+    def __init__(self, name, price, idNum, quantity):
         self.name = name
-        self.price = price
+        self.price = float(price)
         self.idNum = idNum
+        self.quantity = quantity
     
     foodList = []
     def addFood(food):

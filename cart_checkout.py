@@ -23,7 +23,7 @@ class Cart:
                 return
     
     def total(self):
-        return sum((item.price * item.quantity) for item in self.items)
+        return sum((float(item.price) * float(item.quantity)) for item in self.items)
     
     def clearCart(self):
         self.items.clear()
