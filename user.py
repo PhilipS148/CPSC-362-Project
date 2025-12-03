@@ -3,6 +3,9 @@ from flask_cors import CORS
 import json
 import os
 from datetime import timedelta
+from cart_checkout import *
+from food import Food
+
 
 app = Flask(__name__)
 app.secret_key = 'jh431kj4hk23jh5lk2h34j3kl2h'
@@ -72,6 +75,11 @@ class User:
 
 
 temp_user = User()
+active_carts = {}   
+with open('static/menuLists.json') as f:
+    MENU_DATA = json.load(f)
+MENU_ITEMS = MENU_DATA["menu_list"]
+
 
 @app.route('/login')
 def login_page():
@@ -120,6 +128,9 @@ def login():
         session.permanent = True
         session['username'] = username
         session['logged_in'] = True
+        if username not in active_carts:
+         active_carts[username] = Cart(customer=username)
+
         return jsonify(result), 200
     else :
         return jsonify(result), 401
@@ -147,11 +158,73 @@ def menu_page() :
     username = session.get('username', '')
     return render_template('menu.html', logged_in=logged_in, username=username)
 
+
+
+@app.route('/api/add-to-cart', methods=['POST'])
+def add_to_cart():
+     
+    if 'logged_in' not in session or not session['logged_in']:
+        return jsonify({"success": False, "message": "Not logged in"}), 401
+
+    username = session['username']
+    data = request.get_json()
+    item_id = data.get("item_id")
+
+     
+    with open('static/menuLists.json') as f:
+        menu = json.load(f)["menu_list"]
+
+     
+    item = next((i for i in menu if i["idNum"] == item_id), None)
+
+    if not item:
+        return jsonify({"success": False, "message": "Item not found"}), 404
+
+     
+    food_item = Food(
+        name=item["name"],
+        price=item["price"],
+        idNum=item["idNum"],
+        quantity=1
+    )
+
+     
+    user_cart = active_carts[username]
+    user_cart.addItem(food_item)
+
+    return jsonify({
+        "success": True,
+        "message": f"Added 1 {item['name']} to cart"
+    }), 200
+
+
+
 @app.route('/cart')
 def cart():
     logged_in = session.get('logged_in', False)
     username = session.get('username', '')
     return render_template('cart.html', logged_in=logged_in, username=username)
+
+@app.route('/api/get-cart', methods=['GET'])
+def get_cart():
+    if 'logged_in' not in session or not session['logged_in']:
+        return jsonify({"success": False, "message": "Not logged in"}), 401
+
+    username = session['username']
+
+    if username not in active_carts:
+        return jsonify({"success": False, "items": []})
+
+    cart = active_carts[username]
+
+    items = [{
+        "name": item.name,
+        "quantity": item.quantity,
+        "price": item.price * item.quantity,
+        "idNum": item.idNum
+    } for item in cart.items]
+
+    return jsonify({"success": True, "items": items})
     
 
 if __name__ == '__main__':

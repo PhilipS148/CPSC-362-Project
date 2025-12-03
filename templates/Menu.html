@@ -7,6 +7,11 @@
 
 </head>
 
+
+
+
+
+
 <body>
     <header>
     <div class="header-grid">
@@ -22,39 +27,138 @@
     </div>
     </header>
 
+
+
+
+
+
+
+
+
+
+
+<div class="cart-container">
+    <h2>Your Cart</h2>
+    <div id="cart-box">
+    </div>
+</div>
+
+<script>
+async function loadCart() {
+    const res = await fetch("/api/get-cart");
+    const data = await res.json();
+
+    if (!data.success) {
+        document.getElementById("cart-container").innerHTML = "<p>Your cart is empty.</p>";
+        return;
+    }
+
+    let html = "";
+    data.items.forEach(item => {
+        html += `
+            <div class="cart-item">
+                <strong>${item.name}</strong> x${item.quantity}
+                — $${item.price}
+            </div>
+        `;
+    });
+
+    document.getElementById("cart-box").innerHTML = html;
+    
+}
+
+ 
+loadCart();
+
+async function addToCart(idNum, name, price) {
+    const response = await fetch("/api/add-to-cart", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            idNum: idNum,
+            name: name,
+            price: price * quantity,
+            quantity: 1
+        })
+    });
+
+    const data = await response.json();
+
+    if (data.success) {
+        loadCart();    
+    }
+
+    alert(data.message);
+}
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <main>
         <div id="menu-container"></div>
     </main>
 
-    <script type="module">
-        function displayMenuJSON(jsonData) {
-            let grid = '<div class="menu-grid">';
+    <script>
+    function displayMenuJSON(jsonData) {
+        let grid = '<div class="menu-grid">';
 
-            jsonData["menu_list"].forEach(row => {
-                grid += '<div class="item-box">';
-                grid += `<h2>${row["name"]}</h2>`;
-                grid += `<p>Price: $${row["price"]}</p>`;
-                grid += `<button name="cart_add" type="submit" value="${row["idNum"]}">Add to Cart</button>`;
-                grid += '</div>';
+        jsonData["menu_list"].forEach(row => {
+            grid += `
+                <div class="item-box">
+                    <h2>${row.name}</h2>
+                    <p>Price: $${row.price.toFixed(2)}</p>
+                    <button class="add-btn" data-id="${row.idNum}">
+                        Add to Cart
+                    </button>
+                </div>
+            `;
+        });
+
+        grid += "</div>";
+        document.getElementById("menu-container").innerHTML = grid;
+
+        // Add to Cart handler
+        document.querySelectorAll(".add-btn").forEach(button => {
+            button.addEventListener("click", async () => {
+                const itemId = parseInt(button.dataset.id);
+
+                const response = await fetch("/api/add-to-cart", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ item_id: itemId })
+                });
+
+                const data = await response.json();
+               
             });
+        });
+    }
 
-            grid += '</div>';
-
-            document.getElementById('menu-container').innerHTML = grid;
-        }
-
-        fetch("{{ url_for('static', filename='menuLists.json') }}")
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Menu file not found');
-                }
-                return response.json();
-            })
-            .then(menuList => displayMenuJSON(menuList))
-            .catch(error => {
-                console.error('Error loading menu:', error);
-                document.getElementById('menu-container').innerHTML = 
-                    '<p style="color: red; text-align: center;">Error loading menu. Check console for details.</p>';
-            });
-    </script>
+    fetch("{{ url_for('static', filename='menuLists.json') }}")
+        .then(r => r.json())
+        .then(displayMenuJSON);
+</script>
 </body>

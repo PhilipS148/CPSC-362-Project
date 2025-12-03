@@ -15,7 +15,12 @@
         <h1>Tuffy Tacos</h1>
 
         <div class="header-links">
-            <a href="{{ url_for('menu_page') }}">View Menu</a>
+            {% if not logged_in %}
+                <a href="{{ url_for('login_page') }}">View Menu</a>
+            {% else %}
+                <a href="{{ url_for('menu_page') }}">View Menu</a>
+            {% endif %}    
+            
             {% if not logged_in %}
                 <a href="{{ url_for('login_page') }}">Login</a>
             {% else %}
