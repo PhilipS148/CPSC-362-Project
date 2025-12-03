@@ -1,10 +1,17 @@
+html, body {
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+
+}
+
 body {
     background-color: #fff8e1;
     color: #333;
     text-align: center; 
-    margin: 0;
     font-family: sans-serif;
-    padding: 0;
+    display: flex;
+    flex-direction: column;
 }
 
  
@@ -35,13 +42,21 @@ h1 {
     gap: 15px;                   /* Add space between the two links */
 }
 
-.welcome-message {
-    text-align: center;        
-    font-size: 1.5em;         
-    color: #F46524;             
-    margin: 20px 0;            
-    font-weight: bold;           
-    padding-right: 30px;
+.welcome-message-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80px;
+    width: 80px;
+}
+
+.welcome-message-header p {
+    color: white;
+    font-size: 0.9em;
+    font-weight: bold;
+    margin: 0;
+    text-align: center;
+    line-height: 1.2;
 }
 
 
@@ -62,3 +77,18 @@ h1 {
     color: white;
     background-color: #2b35c7;
 }
+
+.bottom-logo-container {
+    margin-top: auto;
+    padding: 0;
+    padding-bottom: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bottom-logo-img {
+    width: 750px;
+    height: 750px;
+}
+

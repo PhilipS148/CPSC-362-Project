@@ -8,32 +8,37 @@
 </head>
 <body>
     <header>
-    <div class="header-grid">
-        <a href="{{ url_for('index') }}">
-            <img id="tuffy" src="{{ url_for('static', filename='images/tuffytaco.png') }}" height="80" width="80" alt="TuffyTacos">
-        </a>
-        <h1>Tuffy Tacos</h1>
-
-        <div class="header-links">
-            {% if not logged_in %}
-                <a href="{{ url_for('login_page') }}">View Menu</a>
+        <div class="header-grid">
+            {% if logged_in %}
+                <div class="welcome-message-header">
+                    <p>Welcome, {{ username }}!</p>
+                </div>
             {% else %}
-                <a href="{{ url_for('menu_page') }}">View Menu</a>
-            {% endif %}    
-            
-            {% if not logged_in %}
-                <a href="{{ url_for('login_page') }}">Login</a>
-            {% else %}
-                <a href="{{ url_for('api_logout') }}">Logout</a>
+                <a href="{{ url_for('index') }}">
+                    <img id="tuffy" src="{{ url_for('static', filename='images/tuffytaco.png') }}" height="80" width="80" alt="TuffyTacos">
+                </a>
             {% endif %}
-        </div>
-    </div>
-</header>
+            <h1>Tuffy Tacos</h1>
 
-{% if logged_in %}
-    <div class="welcome-message">
-        <p>Welcome, {{ username }}!</p>
-    </div>
-{% endif %}
+            <div class="header-links">
+                {% if not logged_in %}
+                    <a href="{{ url_for('login_page') }}">View Menu</a>
+                {% else %}
+                    <a href="{{ url_for('menu_page') }}">View Menu</a>
+                {% endif %}    
+            
+                {% if not logged_in %}
+                    <a href="{{ url_for('login_page') }}">Login</a>
+                {% else %}
+                    <a href="{{ url_for('api_logout') }}">Logout</a>
+                {% endif %}
+            </div>
+        </div>
+    </header>
+
+
+    <footer class = "bottom-logo-container">
+        <img src="{{ url_for('static', filename='images/tuffytaco_copy.png') }}" alt="Tuffy Tacos Logo" class="bottom-logo-img">
+    </footer>
 </body>
 </html>
