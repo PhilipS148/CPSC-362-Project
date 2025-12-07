@@ -140,7 +140,7 @@ async function addToCart(idNum, name, price) {
         grid += "</div>";
         document.getElementById("menu-container").innerHTML = grid;
 
-        // Add to Cart handler
+         
         document.querySelectorAll(".add-btn").forEach(button => {
             button.addEventListener("click", async () => {
                 const itemId = parseInt(button.dataset.id);
