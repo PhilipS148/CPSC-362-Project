@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Tuffy Tacos</title>
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/tuffytaco.png') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSSFiles/cart.css') }}">
+
+</head>
+
+
+
+
+
+
+
+    <header>
+    <div class="header-grid">
+        <a href="{{ url_for('index') }}">
+            <img id="tuffy" src="{{ url_for('static', filename='images/tuffytaco.png') }}" height="80" width="80" alt="TuffyTacos">
+        </a>
+        <h1>Tuffy Tacos - Cart</h1>
+
+        <div class="header-links">
+            <a href="{{ url_for('index') }}">Return to homepage</a>
+            <a href="{{ url_for('menu_page') }}">View Menu</a>
+        </div>
+    </div>
+    </header>

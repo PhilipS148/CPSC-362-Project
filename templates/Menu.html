@@ -12,7 +12,7 @@
 
 
 
-<body>
+
     <header>
     <div class="header-grid">
         <a href="{{ url_for('index') }}">
@@ -43,6 +43,7 @@
     </div>
 </div>
 
+<body>
 <script>
 async function loadCart() {
     const res = await fetch("/api/get-cart");
@@ -100,23 +101,6 @@ async function addToCart(idNum, name, price) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     <main>
         <div id="menu-container"></div>
     </main>
@@ -162,3 +146,7 @@ async function addToCart(idNum, name, price) {
         .then(displayMenuJSON);
 </script>
 </body>
+
+<div class="tuffy-Menu">
+     <img src="{{ url_for('static', filename='images/tuffyMenu.png') }}">
+</div>

@@ -85,12 +85,3 @@ h1 {
 .item-box button:hover {
     background-color: #d9541b;
 }
-
-.cart-container {
-    background-color: #284a92a6;
-    border-radius: 10px;
-}
-
-.tuffy-Menu{
-    align-content: end;
-}
