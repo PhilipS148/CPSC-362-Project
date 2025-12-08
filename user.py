@@ -10,6 +10,8 @@ class User:
 
     def __init__(self) :
         self.user_list = self.load_users()
+        self.name = None
+        self.logged_in = False
 
     def load_users(self) :
         if os.path.exists('account_management.json') :
@@ -53,6 +55,8 @@ class User:
                 print(f"Username match found!")
                 if password == user['password']:
                     print(f"Password match!")
+                    self.name = name
+                    self.logged_in = True
                     return {"success": True}
                 else :
                     print(f"Password wrong")

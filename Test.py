@@ -25,8 +25,9 @@ Menu
         name = input("Enter username: ")
         password = input("Enter password: ")
         _user = User()
-        _user.create_account(name, password)
-        if not _user.login(name = name, password = password):
+        result = _user.login(name=name, password=password)
+        if not result["success"] :
+            print("Login failed please try again")
             continue
         else :
             cart = Cart(_user)
@@ -37,7 +38,8 @@ Menu:
 2. Add to cart
 3. Revmove from cart
 4. Checkout cart
-5. Exit """
+5. View Order Hisotry
+6. Exit """
 )
                 choice = input("Enter choice: ")
                 if choice == "1":
@@ -92,10 +94,24 @@ Menu:
                     option = input("Would you like to procced with checkout:(Y/N)")
                     if option == "Y" :
                         print("Checkout seccessful!")
+                        order = cart.save_order_history()
+                        print("Successfully saved order")
+                        cart.clearCart()
                     elif option == "N" :
                         print("Checkout Canceled")
-
+                
                 elif choice == "5" :
+                    print("======Order History======") 
+                    orders = cart.load_order_history()
+
+                    if not orders :
+                        print("No order history found")
+                    else :
+                        for order in orders:
+                            print(order)
+
+
+                elif choice == "6" :
                     break
 
     elif choice == "2":

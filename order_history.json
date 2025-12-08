@@ -1,0 +1,29 @@
+[
+  {
+    "username": "admin",
+    "items": [
+      {
+        "name": "Carne Asada Taco",
+        "price": 3.49,
+        "quantity": "3"
+      }
+    ],
+    "total": 10.47
+  },
+  {
+    "username": "admin",
+    "items": [
+      {
+        "name": "Al Pastor Taco",
+        "price": 3.29,
+        "quantity": "3"
+      },
+      {
+        "name": "Shrimp Taco",
+        "price": 4.49,
+        "quantity": "5"
+      }
+    ],
+    "total": 32.32
+  }
+]
