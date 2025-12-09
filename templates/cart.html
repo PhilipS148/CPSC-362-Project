@@ -26,3 +26,61 @@
         </div>
     </div>
     </header>
+
+    <div class="tuffy-Cart">
+     <img src="{{ url_for('static', filename='images/tuffyCart.png') }}" class="top-logo-img">
+    </div>
+
+
+
+
+<div id="cart-container" class="cart-container">
+    <h2>Your Cart</h2>
+
+    <div id="cart-box" class="cart-box">
+         
+    </div>
+
+    <div id="cart-total" class="cart-total">
+        
+    </div>
+
+    <button class="checkout-btn">Check Out</button>
+</div>
+
+
+
+<script>
+async function loadCart() {
+    const res = await fetch("/api/get-cart");
+    const data = await res.json();
+
+    const box = document.getElementById("cart-box");
+    const totalDiv = document.getElementById("cart-total");
+
+    if (!data.success || data.items.length === 0) {
+        box.innerHTML = "<p>Your cart is empty.</p>";
+        totalDiv.innerHTML = "";
+        return;
+    }
+
+    let html = "";
+    let total = 0;
+
+    data.items.forEach(item => {
+        html += `
+            <div class="cart-item">
+                <span>${item.name} (x${item.quantity})</span>
+                <span>$${item.price.toFixed(2)}</span>
+            </div>
+        `;
+
+        total += item.price;
+    });
+
+    box.innerHTML = html;
+    totalDiv.innerHTML = `<strong>Total: $${total.toFixed(2)}</strong>`;
+}
+
+loadCart();
+</script>
