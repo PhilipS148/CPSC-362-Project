@@ -2,5 +2,17 @@
   {
     "name": "admin",
     "password": "123"
+  },
+  {
+    "name": "Joshua",
+    "password": "123"
+  },
+  {
+    "name": "Joshua H",
+    "password": "123"
+  },
+  {
+    "name": "Philip",
+    "password": "123"
   }
-] 
+]

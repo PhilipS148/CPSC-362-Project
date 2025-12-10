@@ -91,5 +91,88 @@
     ],
     "total": 9.780000000000001,
     "timestamp": "2025-12-09 17:57:44"
+  },
+  {
+    "username": "Joshua H",
+    "items": [
+      {
+        "name": "Carne Asada Taco",
+        "price": 3.49,
+        "quantity": 1
+      },
+      {
+        "name": "Al Pastor Taco",
+        "price": 3.29,
+        "quantity": 1
+      },
+      {
+        "name": "Coke",
+        "price": 1.5,
+        "quantity": 1
+      },
+      {
+        "name": "Veggie Taco",
+        "price": 2.99,
+        "quantity": 1
+      }
+    ],
+    "total": 11.27,
+    "timestamp": "2025-12-09 19:13:01"
+  },
+  {
+    "username": "Joshua H",
+    "items": [
+      {
+        "name": "Carne Asada Taco",
+        "price": 3.49,
+        "quantity": 1
+      },
+      {
+        "name": "Al Pastor Taco",
+        "price": 3.29,
+        "quantity": 1
+      }
+    ],
+    "total": 6.78,
+    "timestamp": "2025-12-09 19:13:26"
+  },
+  {
+    "username": "Philip",
+    "items": [
+      {
+        "name": "Carne Asada Taco",
+        "price": 3.49,
+        "quantity": 1
+      },
+      {
+        "name": "Al Pastor Taco",
+        "price": 3.29,
+        "quantity": 1
+      },
+      {
+        "name": "Coke",
+        "price": 1.5,
+        "quantity": 1
+      }
+    ],
+    "total": 8.280000000000001,
+    "timestamp": "2025-12-09 19:19:24"
+  },
+  {
+    "username": "Philip",
+    "items": [
+      {
+        "name": "Carne Asada Taco",
+        "price": 3.49,
+        "quantity": 1
+      },
+      {
+        "name": "Shrimp Taco",
+        "price": 4.49,
+        "quantity": 1
+      }
+    ],
+    "total": 7.98,
+    "timestamp": "2025-12-09 19:19:44"
   }
 ]
