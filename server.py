@@ -8,6 +8,10 @@ from food import Food
 from user import User
 
 
+class DummyUser :
+    def __init__(self,name) :
+        self.name = name
+
 app = Flask(__name__)
 app.secret_key = 'jh431kj4hk23jh5lk2h34j3kl2h'
 app.config['SESSION_COOKIE_SAMESITE'] = 'Lax'
@@ -75,7 +79,7 @@ def login():
         session['username'] = username
         session['logged_in'] = True
         if username not in active_carts:
-         active_carts[username] = Cart(customer=username)
+            active_carts[username] = Cart(customer=DummyUser(username))
 
         return jsonify(result), 200
     else :
@@ -139,9 +143,6 @@ def add_to_cart():
         if current_user is None:
             return jsonify({"success": False, "message": "User not found"}), 404
          
-        class DummyUser:
-            def __init__(self, name):
-                self.name = name
         active_carts[username] = Cart(customer=DummyUser(username))
 
      
@@ -214,23 +215,12 @@ def api_order_history():
 
     username = session["username"]
 
-     
-    class TempUser:
-        def __init__(self, name):
-            self.name = name
-
-    current_user = TempUser(username)
+    current_user = DummyUser(username)
 
     cart = Cart(customer=current_user)
     history = cart.load_order_history()
 
     return jsonify({"success": True, "orders": history})
-
-
-
-
-
-
 
 
 

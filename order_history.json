@@ -64,5 +64,32 @@
     ],
     "total": 9.97,
     "timestamp": "2025-12-09 17:12:15"
+  },
+  {
+    "username": "admin",
+    "items": [
+      {
+        "name": "Carne Asada Taco",
+        "price": 3.49,
+        "quantity": 1
+      },
+      {
+        "name": "Al Pastor Taco",
+        "price": 3.29,
+        "quantity": 1
+      },
+      {
+        "name": "Dr Pepper",
+        "price": 1.5,
+        "quantity": 1
+      },
+      {
+        "name": "Coke",
+        "price": 1.5,
+        "quantity": 1
+      }
+    ],
+    "total": 9.780000000000001,
+    "timestamp": "2025-12-09 17:57:44"
   }
 ]
