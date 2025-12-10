@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <title>Tuffy Tacos</title>
-    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/tuffytaco.png') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/tuffytaco.png') }}" class="headicon">
     <link rel="stylesheet" href="{{ url_for('static', filename='CSSFiles/Menu.css') }}">
 
 </head>
@@ -21,8 +21,10 @@
         <h1>Tuffy Tacos - Menu</h1>
 
         <div class="header-links">
-            <a href="{{ url_for('index') }}">Return to homepage</a>
+            
             <a href="{{ url_for('cart') }}">View Cart</a>
+            <a href="{{ url_for('order_history') }}">View Order History</a>
+            <a href="{{ url_for('index') }}">Return to homepage</a>
         </div>
     </div>
     </header>
@@ -37,36 +39,30 @@
 
 
 
-<div class="cart-container">
-    <h2>Your Cart</h2>
-    <div id="cart-box">
+ 
+
+
+
+
+
+<div class="main-layout">
+    <main>
+        <div id="menu-container"></div>
+    </main>
+
+    <div class="tuffy-Menu">
+        <img src="{{ url_for('static', filename='images/tuffyMenu.png') }}">
     </div>
 </div>
 
-<body>
+
+
+
+
+ 
 <script>
-async function loadCart() {
-    const res = await fetch("/api/get-cart");
-    const data = await res.json();
 
-    if (!data.success) {
-        document.getElementById("cart-container").innerHTML = "<p>Your cart is empty.</p>";
-        return;
-    }
 
-    let html = "";
-    data.items.forEach(item => {
-        html += `
-            <div class="cart-item">
-                <strong>${item.name}</strong> x${item.quantity}
-                — $${item.price}
-            </div>
-        `;
-    });
-
-    document.getElementById("cart-box").innerHTML = html;
-    
-}
 
  
 loadCart();
@@ -145,8 +141,27 @@ async function addToCart(idNum, name, price) {
         .then(r => r.json())
         .then(displayMenuJSON);
 </script>
-</body>
+ 
 
-<div class="tuffy-Menu">
-     <img src="{{ url_for('static', filename='images/tuffyMenu.png') }}">
-</div>
+
+ <script>document.addEventListener("click", function (e) {
+    if (e.target.classList.contains("add-btn")) {
+        const btn = e.target;
+
+         
+        if (btn.disabled) return;
+
+         
+        btn.disabled = true;
+        const originalText = btn.innerText;
+        btn.innerText = "Added!";
+        btn.style.backgroundColor = "#4CAF50";  
+
+         
+        setTimeout(() => {
+            btn.disabled = false;
+            btn.innerText = originalText;
+            btn.style.backgroundColor = "";  
+        }, 2500);
+    }
+});</script>

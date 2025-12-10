@@ -25,5 +25,44 @@
       }
     ],
     "total": 32.32
+  },
+  {
+    "username": "admin",
+    "items": [
+      {
+        "name": "Al Pastor Taco",
+        "price": 3.29,
+        "quantity": 1
+      },
+      {
+        "name": "Carnitas Taco",
+        "price": 3.19,
+        "quantity": 1
+      }
+    ],
+    "total": 6.48,
+    "timestamp": "2025-12-09 16:59:14"
+  },
+  {
+    "username": "admin",
+    "items": [
+      {
+        "name": "Carne Asada Taco",
+        "price": 3.49,
+        "quantity": 1
+      },
+      {
+        "name": "Al Pastor Taco",
+        "price": 3.29,
+        "quantity": 1
+      },
+      {
+        "name": "Carnitas Taco",
+        "price": 3.19,
+        "quantity": 1
+      }
+    ],
+    "total": 9.97,
+    "timestamp": "2025-12-09 17:12:15"
   }
 ]

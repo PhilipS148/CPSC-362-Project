@@ -43,11 +43,14 @@ class Cart:
                 }
                 for item in self.items
             ],
-            "total" : self.total()
+            "total" : self.total(),
+            "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         }
 
-        with open("order_history.json", 'r') as f:
+        
+        with open("order_history.json", "r") as f:
             orders = json.load(f)
+        
 
         orders.append(new_order)
 

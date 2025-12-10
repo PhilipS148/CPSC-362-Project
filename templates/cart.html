@@ -21,8 +21,10 @@
         <h1>Tuffy Tacos - Cart</h1>
 
         <div class="header-links">
-            <a href="{{ url_for('index') }}">Return to homepage</a>
             <a href="{{ url_for('menu_page') }}">View Menu</a>
+            <a href="{{ url_for('order_history') }}">View Order History</a>
+            <a href="{{ url_for('index') }}">Return to homepage</a>
+            
         </div>
     </div>
     </header>
@@ -45,7 +47,8 @@
         
     </div>
 
-    <button class="checkout-btn">Check Out</button>
+    <button class="checkout-btn" onclick="checkout()">Check Out</button>
+
 </div>
 
 
@@ -71,10 +74,11 @@ async function loadCart() {
         html += `
             <div class="cart-item">
                 <span>${item.name} (x${item.quantity})</span>
-                <span>$${item.price.toFixed(2)}</span>
+                <span>$${(item.price).toFixed(2)}</span>
             </div>
         `;
 
+         
         total += item.price;
     });
 
@@ -82,5 +86,59 @@ async function loadCart() {
     totalDiv.innerHTML = `<strong>Total: $${total.toFixed(2)}</strong>`;
 }
 
+
 loadCart();
+</script>
+
+<script>
+async function checkout() {
+    const btn = document.querySelector(".checkout-btn");
+    const box = document.getElementById("cart-box");
+    const totalDiv = document.getElementById("cart-total");
+
+     
+    btn.disabled = true;
+    btn.innerText = "Processing...";
+    btn.classList.add("processing");
+
+     
+    box.innerHTML = "<p>Processing your order...</p>";
+    if (totalDiv) totalDiv.innerHTML = "";
+
+    try {
+         
+        const res = await fetch("/api/checkout", { method: "POST" });
+        const data = await res.json();
+
+        if (data.success) {
+             
+            await new Promise(resolve => setTimeout(resolve, 1000));
+
+             
+            box.innerHTML = `
+                <div class="checkout-message">
+                    <h3>Checkout complete!</h3>
+                    <p>Thank you for your order.</p>
+                </div>
+            `;
+            totalDiv.innerHTML = "";
+
+             
+            btn.classList.remove("processing");
+            btn.classList.add("complete");
+            btn.innerText = "Order Complete";
+        } else {
+            
+            btn.disabled = false;
+            btn.innerText = "Checkout Failed";
+            box.innerHTML = `<p>Error: ${data.message}</p>`;
+        }
+    } catch (err) {
+         
+        btn.disabled = false;
+        btn.innerText = "Checkout Failed";
+        box.innerHTML = `<p>Unexpected error occurred.</p>`;
+        console.error(err);
+    }
+}
 </script>

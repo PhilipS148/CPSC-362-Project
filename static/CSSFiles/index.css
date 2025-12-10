@@ -22,6 +22,11 @@ header {
     padding: 20px 0;
     padding-left: 20px;
     padding-right: 20px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    background-color:rgba(244, 102, 36, 0.918);
+    transition: background-color 0.3s, transform 0.2s;
 }
 
 h1 {
@@ -31,15 +36,15 @@ h1 {
 
 .header-grid {
     display: grid;
-    grid-template-columns: 80px 1fr 200px;
+    grid-template-columns: 80px 1fr auto;
     align-items: center;
 }
 
 .header-links {
-    display: flex;               /* Make the links line up horizontally */
-    justify-content: center;     /* Center them horizontally (optional) */
-    align-items: center;         /* Align them vertically (optional) */
-    gap: 15px;                   /* Add space between the two links */
+    display: flex;                
+    justify-content: center;      
+    align-items: center;         
+    gap: 15px;               
 }
 
 .welcome-message-header {
@@ -50,14 +55,28 @@ h1 {
     width: 80px;
 }
 
-.welcome-message-header p {
-    color: white;
-    font-size: 0.9em;
+.welcome-message-header {
+    width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2px 50px;
+    background-color: rgba(255, 255, 255, 0.2); 
+    border-radius: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    font-size: 2em;
     font-weight: bold;
+    color: white;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.welcome-message-header p {
     margin: 0;
     text-align: center;
     line-height: 1.2;
 }
+
+ 
 
 
 .header-links a:link,

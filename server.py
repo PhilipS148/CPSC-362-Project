@@ -29,6 +29,12 @@ def login_page():
 def create_account_page():
     return render_template('create-account.html')
 
+@app.route('/order-history')
+def order_history():
+    logged_in = session.get('logged_in', False)
+    username = session.get('username', '')
+    return render_template('order-history.html', logged_in=logged_in, username=username)
+
 @app.route('/')
 def index():
     logged_in = session.get('logged_in', False)
@@ -102,7 +108,6 @@ def menu_page() :
 
 @app.route('/api/add-to-cart', methods=['POST'])
 def add_to_cart():
-     
     if 'logged_in' not in session or not session['logged_in']:
         return jsonify({"success": False, "message": "Not logged in"}), 401
 
@@ -116,7 +121,6 @@ def add_to_cart():
 
      
     item = next((i for i in menu if i["idNum"] == item_id), None)
-
     if not item:
         return jsonify({"success": False, "message": "Item not found"}), 404
 
@@ -127,6 +131,18 @@ def add_to_cart():
         idNum=item["idNum"],
         quantity=1
     )
+
+     
+    if username not in active_carts:
+         
+        current_user = next((u for u in temp_user.user_list if u["name"] == username), None)
+        if current_user is None:
+            return jsonify({"success": False, "message": "User not found"}), 404
+         
+        class DummyUser:
+            def __init__(self, name):
+                self.name = name
+        active_carts[username] = Cart(customer=DummyUser(username))
 
      
     user_cart = active_carts[username]
@@ -166,6 +182,57 @@ def get_cart():
 
     return jsonify({"success": True, "items": items})
     
+
+
+
+@app.route("/api/checkout", methods=["POST"])
+def checkout():
+    if "username" not in session:
+        return jsonify({"success": False, "message": "Not logged in"}), 401
+
+    username = session["username"]
+
+    if username not in active_carts:
+        return jsonify({"success": False, "message": "Cart is empty"}), 400
+
+    cart = active_carts[username]
+
+     
+    cart.save_order_history()
+
+     
+    cart.clearCart()
+
+    return jsonify({"success": True, "message": "Checkout complete!"})
+
+
+
+@app.route("/api/order-history")
+def api_order_history():
+    if "username" not in session:
+        return jsonify({"success": False, "message": "Not logged in"}), 403
+
+    username = session["username"]
+
+     
+    class TempUser:
+        def __init__(self, name):
+            self.name = name
+
+    current_user = TempUser(username)
+
+    cart = Cart(customer=current_user)
+    history = cart.load_order_history()
+
+    return jsonify({"success": True, "orders": history})
+
+
+
+
+
+
+
+
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)

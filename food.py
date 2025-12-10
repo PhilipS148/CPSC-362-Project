@@ -6,13 +6,5 @@ class Food:
         self.idNum = idNum
         self.quantity = quantity
     
-    foodList = []
-    def addFood(food):
-        foodList.append(food)
-        #add to json file
-
-    drinkList = []
-    def addDrink(food):
-        foodList.append(food)
-        #add to json file
+  
          
