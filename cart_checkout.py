@@ -2,7 +2,8 @@ import user
 import json
 import food
 from datetime import datetime
-'''This class will handle the cart/checkout system and will interact with the user class'''
+'''This class will handle the cart/checkout system, store order history and
+   will interact with the user class'''
 
 class Cart:
     def __init__(self, customer ):
