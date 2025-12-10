@@ -2,9 +2,7 @@ import json
 import os
 
 class User:
-    '''This class will deal with account creation as well as user login functions.
-       In addition we will handle rewards through the user class and maintain a log
-       of previous order history'''
+    '''This class will deal with account creation as well as user login functions.'''
        
     user_list = []
 
@@ -13,6 +11,7 @@ class User:
         self.name = None
         self.logged_in = False
 
+    # Loads user data from account_management.json file
     def load_users(self) :
         if os.path.exists('account_management.json') :
             try :
@@ -27,12 +26,13 @@ class User:
         print("No account file found")
         return []
 
+    # Saves user data to account_managment.json  
     def save_user(self) :
         with open('account_management.json', 'w') as file:
             json.dump(self.user_list, file, indent=2)
         print(f"Saved {len(self.user_list)} users")
         
-    
+    # Handles account creation
     def create_account(self, name, password):
         for user in self.user_list:
             if name == user['name']:
@@ -46,6 +46,7 @@ class User:
         self.save_user()
         return {"success": True}
 
+    # Handles user login
     def login(self, name, password) :
         print(f"Login attempt - Username: '{name}', Password: '{password}'")  
         print(f"Current user_list: {self.user_list}")  
